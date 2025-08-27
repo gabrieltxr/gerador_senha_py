@@ -32,6 +32,15 @@ def gerar_senha(tamanho=12):
     entry_resultado.delete(0, tk.END)
     entry_resultado.insert(0, senha)
 
+def copiar_senha():
+    senha = entry_resultado.get()
+    if senha:
+        root.clipboard_clear()
+        root.clipboard_append(senha)
+        messagebox.showinfo("Copiado", "Senha copiada para a área de transferência!")
+    else:
+        messagebox.showwarning("Aviso", "Nenhuma senha para copiar.")
+
 root = tk.Tk()
 root.title("Gerador de senhas")
 root.geometry("350x250")
@@ -50,6 +59,7 @@ tk.Checkbutton(root, text="Números", variable=var_numeros).pack()
 tk.Checkbutton(root, text="Símbolos", variable=var_simbolos).pack()
 
 tk.Button(root, text="Gerar senha", command=gerar_senha).pack(pady=10)
+tk.Button(root, text="Copiar Senha", command=copiar_senha).pack(pady=5)
 
 entry_resultado = tk.Entry(root, width=30)
 entry_resultado.pack()
